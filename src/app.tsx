@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import * as Loadables from './loadables';
 import { Routes as AppRoutes, isLoggedIn } from '@utilities';
 
-import './assets/styles/app.scss';
+import './assets/styles/index.scss';
 
 export const App = () => (
 	<Routes>

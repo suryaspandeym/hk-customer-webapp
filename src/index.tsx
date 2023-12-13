@@ -7,6 +7,11 @@ import { App } from './app';
 import { removeItems } from '@utilities';
 import { AuthActionType } from '@store/enums';
 import { configureStore } from '@store/index';
+import { PrimeReactProvider } from 'primereact/api';
+import { ToastContainer } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.min.css';
+import { PrimeReactConfig } from './primereact-config';
 
 export const store = configureStore();
 
@@ -15,11 +20,14 @@ const root = createRoot(node);
 
 const renderRoot = (Application: any): void => {
 	root.render(
-		<Provider store={store}>
-			<BrowserRouter>
-				<Application />
-			</BrowserRouter>
-		</Provider>
+		<PrimeReactProvider value={PrimeReactConfig}>
+			<Provider store={store}>
+				<BrowserRouter>
+					<Application />
+					<ToastContainer />
+				</BrowserRouter>
+			</Provider>
+		</PrimeReactProvider>
 	);
 };
 

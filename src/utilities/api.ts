@@ -85,3 +85,26 @@ http.interceptors.response.use(
 		return Promise.reject(error);
 	}
 );
+
+export const fileUploadWithoutToken = async (endpoint: any, file: File, config?: any): Promise<AxiosResponse> => {
+	let headers: any = {
+		'Content-Type': file.type
+	};
+	if (config?.headers && config.headers.file !== '') {
+		headers = {
+			...headers,
+			'x-amz-meta-filename': config.headers.file
+		};
+	}
+
+	return await new Promise((resolve, reject) => {
+		axios
+			.put(endpoint, file, {
+				headers: { ...headers }
+			})
+			.then(resolve)
+			.catch(e => {
+				reject(e);
+			});
+	});
+};
