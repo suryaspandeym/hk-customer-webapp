@@ -108,3 +108,21 @@ export const fileUploadWithoutToken = async (endpoint: any, file: File, config?:
 			});
 	});
 };
+
+
+export const fetchHeadObjFromURL = async (endpoint: any) => {
+	return await new Promise(async (resolve, reject) => {
+		await axios
+			.get(endpoint, {
+				headers: {
+					Range: "bytes=0-0"
+				}
+			})
+			.then((res) => {
+				resolve(res);
+			})
+			.catch((e) => {
+				reject(e);
+			});
+	});
+};
