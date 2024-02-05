@@ -10,5 +10,6 @@ export * from './local-storage';
 export * from './currency';
 export * from './toasts';
 export * from './forms';
+export * from './table'
 
 export * from './colors';
