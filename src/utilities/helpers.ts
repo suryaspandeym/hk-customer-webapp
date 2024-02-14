@@ -57,9 +57,7 @@ export const renderAddress = (address: any) => {
 
 
 
-export const timestampToFormattedDate = (timestamp: number | string | undefined, dateFormat: string) => {
-    return timestamp !== undefined && isValid(timestamp) ? format(new Date(timestamp), dateFormat) : "";
-};
+
 
 export const goBack = (navigate: any) => {
     navigate("..", { relative: "path" });

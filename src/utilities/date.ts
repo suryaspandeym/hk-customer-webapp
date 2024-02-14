@@ -2,6 +2,7 @@ import { format, isValid, startOfDay } from "date-fns";
 
 // 26/01/2023, 09:33 PM
 export const DATE_FNS_TIME_FORMAT = "dd/MM/yy, hh:mm aa";
+export const DATE_FNS_TIME_ONLY_FORMAT = "mm:ss";
 export const DATE_FNS_FORMAT = "dd/MM/yy";
 
 export const PRIME_REACT_DATE_FORMAT = "dd/mm/yy";

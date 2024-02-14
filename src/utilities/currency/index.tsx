@@ -1,13 +1,15 @@
 export const formatCurrencyINR = (amount: number, options?: any) =>
 	amount !== undefined || amount !== null
 		? new Intl.NumberFormat("en-IN", {
-				maximumSignificantDigits: 3,
+				// maximumSignificantDigits: 3,
 				...(!!options
-					? { ...options, currency: options.currency || "INR" }
+					? options
 					: {
+							style: "currency",
 							minimumFractionDigits: 2,
-							maximumFractionDigits: 2,
+							// notation: "compact",
 							useGrouping: true,
+							currency: "INR",
 							compactDisplay: "long"
 					  })
 		  }).format(amount)
