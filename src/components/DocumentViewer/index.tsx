@@ -3,13 +3,13 @@ import PreviewURL from '@components/PreviewURL';
 
 import { ConfirmPopup, confirmPopup } from 'primereact/confirmpopup';
 
-const DocumentViewer = ({ item, urlObj, deleteDocuments }: any) => {
+const DocumentViewer = ({ item, urlObj, deleteDocument }: any) => {
 	const confirmDeleteDocument = (event: any, documentUrlId: any) => {
 		confirmPopup({
 			target: event.currentTarget,
 			message: 'Do you want to delete this document?',
 			icon: 'pi pi-info-circle',
-			accept: () => deleteDocuments(documentUrlId)
+			accept: () => deleteDocument(documentUrlId)
 		});
 	};
 	return (
