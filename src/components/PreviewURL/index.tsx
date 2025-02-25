@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { VscFilePdf } from "react-icons/vsc";
-import YoutubeEmbed from "@components/YoutubeEmbed";
-import { fetchHeadObjFromURL } from "@utilities";
-import { fileNameFromURL, isBlobFile, isDocFile, isImgFile, isYoutubeLink } from "@utilities/doc";
+import React, { useEffect, useState } from 'react';
+import { VscFilePdf } from 'react-icons/vsc';
+import YoutubeEmbed from '@components/YoutubeEmbed';
+import { fetchHeadObjFromURL } from '@utilities';
+import { fileNameFromURL, isBlobFile, isDocFile, isImgFile, isYoutubeLink } from '@utilities/doc';
 
 interface PreviewProps {
 	urlObj: any;
@@ -17,7 +17,7 @@ export const PreviewURL = ({ urlObj, hideName, disableClick = false, showFileNam
 	const [headObj, setHeadObj] = useState<any>(null);
 	const openInNewTab = () => {
 		if (!disableClick) {
-			window.open(urlObj.documentUrl, "_blank");
+			window.open(urlObj.documentUrl, '_blank');
 		}
 	};
 
@@ -35,16 +35,25 @@ export const PreviewURL = ({ urlObj, hideName, disableClick = false, showFileNam
 	}, []);
 
 	const fileName = !hideName && (
-		<span>{urlObj?.fileName || (!!headObj && headObj.headers["x-amz-meta-filename"]) || fileNameFromURL(urlObj.documentUrl)}</span>
+		<span>
+			{urlObj?.fileName ||
+				(!!headObj && headObj.headers['x-amz-meta-filename']) ||
+				fileNameFromURL(urlObj.documentUrl)}
+		</span>
 	);
 
 	if (isImgFile(urlObj)) {
 		return (
-			<div className={["flex w-auto items-center gap-2 cursor-pointer", props.containerClasses].join(" ")} onClick={openInNewTab}>
+			<div
+				className={['flex w-auto items-center gap-2 cursor-pointer flex-col', props.containerClasses].join(' ')}
+				onClick={openInNewTab}
+			>
 				<img
 					src={urlObj.documentUrl}
 					alt="unavailable"
-					className={["relative object-fill h-28 w-28 rounded-sm cursor-pointer", props.elementClasses].join(" ")}
+					className={['relative object-fill h-28 w-28 rounded-sm cursor-pointer', props.elementClasses].join(
+						' '
+					)}
 					onError={removeImg}
 				/>
 				{showFileName && fileName}
@@ -53,14 +62,14 @@ export const PreviewURL = ({ urlObj, hideName, disableClick = false, showFileNam
 	} else if (isDocFile(urlObj)) {
 		// Fetch Header Obj
 		return (
-			<div className="flex w-auto items-center gap-2 cursor-pointer" onClick={openInNewTab}>
+			<div className="flex w-auto items-center gap-2 cursor-pointer flex-col" onClick={openInNewTab}>
 				<VscFilePdf size="40" />
 				{fileName}
 			</div>
 		);
 	} else if (isBlobFile(urlObj)) {
 		return (
-			<div className="flex w-auto items-center gap-2 cursor-pointer" onClick={openInNewTab}>
+			<div className="flex w-auto items-center gap-2 cursor-pointer flex-col" onClick={openInNewTab}>
 				<img
 					src={urlObj.documentUrl}
 					alt="unavailable"
@@ -71,7 +80,13 @@ export const PreviewURL = ({ urlObj, hideName, disableClick = false, showFileNam
 			</div>
 		);
 	} else if (isYoutubeLink(urlObj.documentUrl)) {
-		return <YoutubeEmbed url={urlObj.documentUrl} containerClasses={props.containerClasses} elementClasses={props.elementClasses} />;
+		return (
+			<YoutubeEmbed
+				url={urlObj.documentUrl}
+				containerClasses={props.containerClasses}
+				elementClasses={props.elementClasses}
+			/>
+		);
 	} else {
 		// return (
 		//     <div className="flex w-auto items-center gap-2 cursor-pointer" onClick={openInNewTab}>

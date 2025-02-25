@@ -1,8 +1,22 @@
-export const API_URL = 'https://my-awesome-api.com/rest/v1/';
+import ENV from './env';
+import * as Yup from 'yup';
+export const API_URL = ENV.API_BASE_PATH;
 
+export enum WIDTH_KEYS {
+	XS = 'XS',
+	SM = 'SM',
+	MD = 'MD',
+	LG = 'LG',
+	XL = 'XL',
+	XXL = 'XXL',
+	XXXL = 'XXXL'
+}
+
+export const SOURCE_HEADERS = ['x-source-id', '24680'];
 export const TOKEN_KEY = 'access-token';
 export const REFRESH_TOKEN_KEY = 'refresh-token';
 export const TOKEN_THRESHOLD_KEY = 'access-token-threshold';
+export const USER_TYPE = 'user-type';
 
 /* eslint-disable */
 export const EMAIL_REGEX =
@@ -10,10 +24,61 @@ export const EMAIL_REGEX =
 export const PASSWORD_REGEX = /.{8,}/;
 export const PHONE_REGEX = /^[0-9]{10}$/;
 export const OTP_REGEX = /^[0-9]{6}$/;
-/* eslint-enable */
-
 export const YOUTUBE_LINK_REGEX =
 	/^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:v\/|embed\/|watch\?v=)|youtu\.be\/)([^\s&?/]+)/;
+/* eslint-enable */
 
+export const noop = (...arg: any): void => {
+	// Do Nothing
+};
 
-export const DATE_FNS_TIME_FORMAT = "dd LLL yyyy, hh:mm aa";
+// 26 Aug 2023, 09:33 PM
+export const DATE_FNS_TIME_FORMAT = 'dd LLL yyyy, hh:mm aa';
+
+export enum COLOR_KEYS {
+	PRIMARY = '#064fd4',
+	SECONDARY = '#64748b',
+	SUCCESS = '#22c55e', // green
+	INFO = '#0ea5e9',
+
+	HELP = '#a855f7', // purple
+	PROGRESS = '#0d3b66', // blue
+
+	WARNING = '#ee964b', // yellow
+	CRITICAL = '#f95738', // orange
+	DANGER = '#ff3232', // red
+
+	TERMINAL = '#a57548' // off-white
+}
+
+export const REQUIRED_MESSAGE = 'This field is required';
+export const SINGLE_SELECT_FIELD_VALIDATION = Yup.object();
+export const DOCUMENT_UPLOAD_MAX_SIZE = 10485760; // 10 MB
+export const FILE_UPLOAD_MESSAGE = 'Drag and drop here to upload files or choose';
+
+export enum UPLOAD_TYPE_KEYS {
+	UPLOAD_VIDEO = 'UPLOAD_VIDEO',
+	YOUTUBE_LINK = 'YOUTUBE_LINK',
+	DOCUMENT = 'DOCUMENT'
+}
+
+export const UPLOAD_TYPES = {
+	[UPLOAD_TYPE_KEYS.UPLOAD_VIDEO]: {
+		key: UPLOAD_TYPE_KEYS.UPLOAD_VIDEO,
+		label: 'Upload Video'
+	},
+	[UPLOAD_TYPE_KEYS.YOUTUBE_LINK]: {
+		key: UPLOAD_TYPE_KEYS.YOUTUBE_LINK,
+		label: 'Youtube Link'
+	},
+	[UPLOAD_TYPE_KEYS.DOCUMENT]: {
+		key: UPLOAD_TYPE_KEYS.DOCUMENT,
+		label: 'Document'
+	}
+};
+
+export enum REFERENCE_TYPE_KEYS {
+	PRODUCT = 'PRODUCT',
+	INSPIRATION = 'INSPIRATION',
+	PROJECT = 'PROJECT'
+}

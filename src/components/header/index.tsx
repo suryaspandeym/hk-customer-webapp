@@ -10,7 +10,7 @@ import { AuthActionType } from '@store/enums';
 
 import Logo from '@assets/images/react.svg';
 
-import './index.scss';
+// import './index.scss';
 
 export const Header: React.FunctionComponent = () => {
 	const { t } = useTranslation();

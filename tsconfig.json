@@ -38,6 +38,7 @@
 			"@contexts/*": ["./src/contexts/*"],
 			"@providers/*": ["./src/providers/*"],
 			"@containers/*": ["./src/containers/*"],
+			"@forms/*": ["./src/forms/*"],
 			"@src/*": ["./src/*"],
 			"@root/*": ["./*"]
 		},

@@ -2,8 +2,9 @@ import React from 'react';
 import PreviewURL from '@components/PreviewURL';
 
 import { ConfirmPopup, confirmPopup } from 'primereact/confirmpopup';
+import { RadioButton } from 'primereact/radiobutton';
 
-const DocumentViewer = ({ item, urlObj, deleteDocument }: any) => {
+const DocumentViewer = ({ item, urlObj, deleteDocument, handleCoverImageChange, showFileName }: any) => {
 	const confirmDeleteDocument = (event: any, documentUrlId: any) => {
 		confirmPopup({
 			target: event.currentTarget,
@@ -15,7 +16,7 @@ const DocumentViewer = ({ item, urlObj, deleteDocument }: any) => {
 	return (
 		<div className="flex">
 			<a href={item.documentUrl} target="_blank" className="relative" rel="noreferrer">
-				<div className={'h-32 w-32'}>
+				<div className={'h-32 w-32 flex justify-center items-center'}>
 					<PreviewURL
 						urlObj={
 							urlObj || {
@@ -25,13 +26,24 @@ const DocumentViewer = ({ item, urlObj, deleteDocument }: any) => {
 							}
 						}
 						disableClick
+						showFileName={showFileName}
 					/>
 				</div>
 			</a>
-			<span className="min-w-4">
+
+			{item.coverImage !== undefined && (
+				<span>
+					<RadioButton
+						inputId={`cb-${item.documentUrlId}`}
+						checked={item.coverImage}
+						onChange={() => handleCoverImageChange(item.documentUrlId)}
+					/>
+				</span>
+			)}
+			<span className="min-w-4 ml-2">
 				<ConfirmPopup />
 				<i
-					className="pi pi-trash hover:cursor-pointer"
+					className="pi pi-trash text-red-600 hover:cursor-pointer"
 					onClick={e => confirmDeleteDocument(e, item.documentUrlId)}
 					title="Delete document"
 				/>

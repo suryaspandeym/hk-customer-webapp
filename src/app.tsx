@@ -1,10 +1,17 @@
 import * as React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate, RouteObject } from 'react-router-dom';
 
 import * as Loadables from './loadables';
 import { Routes as AppRoutes, isLoggedIn } from '@utilities';
 
-import './assets/styles/index.scss';
+// import './assets/styles/index.scss';
+
+export const ROUTES: RouteObject[] = [
+	{
+		path: AppRoutes.BASE,
+		element: <Navigate to={AppRoutes.BASE} replace />
+	}
+];
 
 export const App = () => (
 	<Routes>

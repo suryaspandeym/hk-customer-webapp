@@ -1,0 +1,86 @@
+/* Customizations to the designer theme should be defined here */
+$primaryColor: #082f49; //rgb(25, 89, 65)
+$primaryLightColor: #0c476e;
+$primaryLighterColor: #075385;
+
+$primaryDarkColor: #195941;
+$primaryDarkerColor: #195941;
+
+$secondaryColor: #f8f9f9;
+$secondaryDark: #dee2e6;
+
+$highlightColor: #e9ecef;
+
+:root {
+	--primary-color: #{$primaryColor};
+	--primary-lighter-color: #{$primaryLighterColor};
+	--primary-light-color: #{$primaryLightColor};
+	--secondary-color: #{$secondaryColor};
+	--secondary-dark: #{$secondaryDark};
+	--highlight-color: #{$highlightColor};
+	font-size: 12px;
+}
+
+$fontFamily: var(--font-family);
+
+$tableHeaderCellBg: $primaryColor;
+$tableHeaderCellTextColor: $primaryTextColor;
+
+$tableHeaderCellHoverBg: $primaryLightColor;
+$tableHeaderCellTextHoverColor: $primaryTextColor;
+
+$tableHeaderCellHighlightBg: $primaryColor;
+$tableHeaderCellHighlightTextColor: $primaryTextColor;
+
+$tableHeaderCellHighlightHoverBg: $primaryLightColor;
+$tableHeaderCellHighlightTextHoverColor: $primaryTextColor;
+
+// Card
+/// @group panel
+$cardContentPadding: 0rem 0; /// Padding of a card content
+
+$cardShadow: 0px 0px 1px 1px #e3e3e3;
+
+.card-shadow {
+	box-shadow: $cardShadow;
+}
+
+//button
+
+$buttonHoverBg: $primaryColor;
+$buttonHoverBorderColor: $primaryColor;
+
+$buttonActiveBg: $primaryLightColor;
+$buttonActiveBorderColor: $primaryLightColor;
+$buttonActiveShadow: 0 0 6px -1px #000;
+
+.p-button {
+	&:not(:disabled):hover {
+		box-shadow: $buttonActiveShadow;
+	}
+	&:not(:disabled):hover.p-button-link {
+		box-shadow: none;
+	}
+	&:disabled {
+		background-color: #0000001f;
+		color: #00000081;
+		border: none;
+	}
+	&:focus {
+		outline: none;
+		outline-offset: none;
+		box-shadow: none;
+	}
+}
+/// Outline of a focused element
+/// @group general
+$focusOutlineColor: $primaryLighterColor;
+
+/// @group general
+$focusShadow: 0 0 0 0.2rem $focusOutlineColor;
+
+//dialog
+
+$dialogContentPadding: 0 1.5rem 2rem 1.5rem;
+$dialogHeaderBorder: 0 none;
+

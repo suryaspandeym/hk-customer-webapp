@@ -10,6 +10,7 @@
 		"svg": "svgo-viewbox -i ./src/assets",
 		"start": "vite --open",
 		"build": "vite build",
+		"build-theme": "sass --update --style=compressed src/assets/styles/theme/eunomia/theme.scss:src/assets/styles/eunomia.min.css",
 		"tsc": "tsc --noEmit --skipLibCheck",
 		"lint": "yarn lint:ts && yarn lint:scss",
 		"lint:ts": "eslint 'src/**/*.{ts,tsx}'",

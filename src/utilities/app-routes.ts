@@ -1,5 +1,4 @@
 const BASE = "/";
-const ADMIN = BASE + "admin";
 const ABOUT = BASE + "about";
 const LOGIN = BASE + "login";
 const SIGNUP = BASE + "signup";

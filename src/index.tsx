@@ -4,14 +4,17 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
 import { App } from './app';
-import { removeItems } from '@utilities';
-import { AuthActionType } from '@store/enums';
 import { configureStore } from '@store/index';
 import { PrimeReactProvider } from 'primereact/api';
 import { ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.min.css';
 import { PrimeReactConfig } from './primereact-config';
+
+// 3rd Party Styling imports
+import 'primeicons/primeicons.css'; //icons
+// import '@assets/styles/eunomia.min.css';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 export const store = configureStore();
 
@@ -30,9 +33,5 @@ const renderRoot = (Application: any): void => {
 		</PrimeReactProvider>
 	);
 };
-
-removeItems();
-
-store.dispatch({ type: AuthActionType.RESET_AUTH });
 
 renderRoot(App);

@@ -10,3 +10,8 @@ export interface SignupRequest extends AuthRequest {
 	last_name: string;
 	first_name: string;
 }
+export interface ApiError {
+	code: string;
+	message: string;
+	type: string;
+}

@@ -1,91 +1,72 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { type AxiosResponse, type AxiosRequestConfig } from 'axios';
+import applyCaseMiddleware from 'axios-case-converter';
 
-import { handleItem, setThreshold } from './local-storage';
-import { AuthRequest, SignupRequest } from './interfaces';
-import { API_URL, REFRESH_TOKEN_KEY, TOKEN_KEY, TOKEN_THRESHOLD_KEY } from './constants';
+import { removeItems, setItems } from './local-storage';
+import { API_URL, REFRESH_TOKEN_KEY, TOKEN_KEY, SOURCE_HEADERS } from './constants';
+import AppRoutes from './app-routes';
 
-export const http = axios.create({
-	baseURL: API_URL
-});
-
-export const post = (endpoint: string, data?: unknown): Promise<AxiosResponse> =>
-	new Promise((resolve, reject) =>
-		http
-			.post(endpoint, data)
-			.then(resolve)
-			.catch(e => reject(e.response.data))
-	);
-
-export const get = (endpoint: string): Promise<AxiosResponse> =>
-	new Promise((resolve, reject) =>
-		http
-			.get(endpoint)
-			.then(resolve)
-			.catch(e => reject(e.response.data))
-	);
-
-export const patch = <T>(endpoint: string, data: T): Promise<AxiosResponse> =>
-	new Promise((resolve, reject) =>
-		http
-			.patch(endpoint, data)
-			.then(resolve)
-			.catch(e => reject(e.response.data))
-	);
-
-export const login = (data: AuthRequest): Promise<AxiosResponse> => post('passport/basic/login', data);
-
-export const logout = (): Promise<AxiosResponse> => post('user/logout');
-
-export const passwordReset = (data: Partial<AuthRequest>): Promise<AxiosResponse> => post('user/reset-password', data);
-
-export const signup = (data: SignupRequest): Promise<AxiosResponse> => post('passport/basic/signup', data);
-
-http.interceptors.request.use(config => {
-	if (config.headers) {
-		config.headers['Authorization'] = localStorage.getItem(TOKEN_KEY) || '';
-	}
-
-	return config;
-}, Promise.reject);
-
-http.interceptors.response.use(
-	response => response,
-	error => {
-		const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY);
-
-		if (!refreshToken) {
-			return Promise.reject(error);
+export const http = applyCaseMiddleware(
+	axios.create({
+		baseURL: API_URL,
+		headers: {
+			Vary: '*',
+			Accept: 'application/json'
 		}
-
-		const originalRequest = error.config;
-
-		if (error.response.status === 401 && !originalRequest._retry) {
-			originalRequest._retry = true;
-
-			if (http.defaults.headers) {
-				http.defaults.headers['Authorization'] = 'Bearer ' + refreshToken;
-			}
-
-			return post('auth/token')
-				.then(res => {
-					const { access_token, threshold } = res.data;
-
-					handleItem(TOKEN_KEY, access_token);
-					handleItem(TOKEN_THRESHOLD_KEY, setThreshold(threshold));
-
-					if (http.defaults.headers) {
-						http.defaults.headers['Authorization'] = access_token;
-					}
-
-					return http(originalRequest);
-				})
-				.catch(Promise.reject);
-		}
-
-		return Promise.reject(error);
-	}
+	})
 );
 
+export const post = async (endpoint: string, data?: unknown): Promise<AxiosResponse> => {
+	return await new Promise((resolve, reject) => {
+		http.post(endpoint, data)
+			.then(resolve)
+			.catch(e => {
+				reject(e.response.data);
+			});
+	});
+};
+
+export const get = async (endpoint: string, queryParams?: Record<string, unknown>): Promise<AxiosResponse> => {
+	let config: AxiosRequestConfig = {
+		data: {}
+	};
+	if (queryParams) {
+		config = { ...config, params: queryParams };
+	}
+	return await new Promise((resolve, reject) => {
+		http.get(endpoint, config)
+			.then(resolve)
+			.catch(e => {
+				reject(e.response?.data);
+			});
+	});
+};
+
+export const patch = async <T>(endpoint: string, data: T): Promise<AxiosResponse> =>
+	await new Promise((resolve, reject) => {
+		http.patch(endpoint, data)
+			.then(resolve)
+			.catch(e => {
+				reject(e.response?.data);
+			});
+	});
+export const put = async <T>(endpoint: string, data?: T): Promise<AxiosResponse> =>
+	await new Promise((resolve, reject) => {
+		http.put(endpoint, data)
+			.then(resolve)
+			.catch(e => {
+				reject(e.response.data);
+			});
+	});
+
+export const postWithoutToken = async (endpoint: any, data?: any, config?: any): Promise<AxiosResponse> => {
+	let headers = {};
+	if (config.addSourceHeader) {
+		headers = { ...headers, [SOURCE_HEADERS[0]]: SOURCE_HEADERS[1] };
+	}
+	return await axios.post(API_URL + '/' + endpoint, data, {
+		headers: { ...headers }
+	});
+};
 export const fileUploadWithoutToken = async (endpoint: any, file: File, config?: any): Promise<AxiosResponse> => {
 	let headers: any = {
 		'Content-Type': file.type
@@ -109,20 +90,77 @@ export const fileUploadWithoutToken = async (endpoint: any, file: File, config?:
 	});
 };
 
-
 export const fetchHeadObjFromURL = async (endpoint: any) => {
-	return await new Promise(async (resolve, reject) => {
-		await axios
+	return await new Promise((resolve, reject) => {
+		axios
 			.get(endpoint, {
 				headers: {
-					Range: "bytes=0-0"
+					Range: 'bytes=0-0'
 				}
 			})
-			.then((res) => {
+			.then(res => {
 				resolve(res);
 			})
-			.catch((e) => {
+			.catch(e => {
 				reject(e);
 			});
 	});
 };
+
+http.interceptors.request.use(
+	(config: AxiosRequestConfig) => {
+		if (config.headers) {
+			config.headers.Authorization = 'Bearer ' + localStorage.getItem(TOKEN_KEY) || '';
+		}
+
+		return config;
+	},
+	async (error: any) => await Promise.reject(error)
+);
+
+http.interceptors.response.use(
+	(response: AxiosResponse) => response,
+	async (error: any) => {
+		const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY);
+		if (!refreshToken) {
+			return (window.location.href = AppRoutes.LOGIN);
+		}
+
+		const originalRequest = error.config;
+
+		if (error.response.status === 401 && !originalRequest._retry) {
+			originalRequest._retry = true;
+
+			if (http.defaults.headers) {
+				(http.defaults.headers as any).Authorization = 'Bearer ' + refreshToken;
+			}
+
+			// return;
+
+			return await postWithoutToken(
+				'auth/refresh-token',
+				{
+					token: refreshToken
+				},
+				{ addSourceHeader: true }
+			)
+				.then(async (res: any) => {
+					setItems(res.data.auth_response);
+					/*eslint-disable*/
+					const { access_token } = res.data.auth_response;
+					if (http.defaults.headers) {
+						(http.defaults.headers as any)['Authorization'] = access_token;
+					}
+					/* eslint-enable */
+
+					return await http(originalRequest);
+				})
+				.catch(() => {
+					removeItems();
+					window.location.href = AppRoutes.LOGIN;
+				});
+		}
+
+		return await Promise.reject(error);
+	}
+);
