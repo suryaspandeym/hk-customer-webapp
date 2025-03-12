@@ -12,8 +12,9 @@ export const Signup: LoadableComponent<any> = loadable(() => import('@containers
 // prettier-ignore
 export const PasswordReset: LoadableComponent<any> = loadable(() => import('@containers/auth/password-reset'), { fallback });
 
-// prettier-ignore
-export const Home: LoadableComponent<any> = loadable(() => import('@containers/home'), { fallback });
+export const NewProject: LoadableComponent<any> = loadable(() => import('@containers/NewProject/index'), { fallback });
+export const MyOrders: LoadableComponent<any> = loadable(() => import('@containers/MyOrders/index'), { fallback });
 
 // prettier-ignore
-export const NotFound: LoadableComponent<any> = loadable(() => import('@containers/not-found'), { fallback });
+export const Home: LoadableComponent<any> = loadable(() => import('@containers/home'), { fallback });
+export const Profile: LoadableComponent<any> = loadable(() => import('@containers/profile'), { fallback });

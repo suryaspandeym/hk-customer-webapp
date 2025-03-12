@@ -1,24 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { UserActionType } from '@store/branches/user/enums';
 import { useDispatch } from 'react-redux';
 import authContext from '@contexts/AuthContext';
 import GlobalNavbar from '@components/GlobalNavbar';
 import NavSidebar from '@components/NavSidebar';
 import AppRoutes from '@utilities/app-routes';
 import { FaRegBuilding } from 'react-icons/fa';
-import { IoPeopleOutline } from 'react-icons/io5';
-import { BsCalendarDate, BsExclamationCircle } from 'react-icons/bs';
 import { menuItemRenderer } from '@components/NavSidebar/utils';
 import { matchRoutes, useLocation, useNavigate } from 'react-router';
 import { ROUTES } from '@src/app';
-import { BiCategory } from 'react-icons/bi';
-import { VscWorkspaceTrusted } from 'react-icons/vsc';
 import { MdOutlineAddHomeWork } from 'react-icons/md';
-import { MdOutlineMapsHomeWork } from 'react-icons/md';
 import { TbSitemap } from 'react-icons/tb';
-import { LiaElementor } from 'react-icons/lia';
 import { FaMoneyCheckDollar } from 'react-icons/fa6';
-import { RiMoneyDollarCircleLine } from 'react-icons/ri';
+import { CustomerActionType } from '@store/branches/customer/enums';
+import { FaWandMagicSparkles } from 'react-icons/fa6';
 
 export const RootLayout: React.FunctionComponent<any> = ({ children }) => {
 	const dispatch = useDispatch();
@@ -31,7 +25,7 @@ export const RootLayout: React.FunctionComponent<any> = ({ children }) => {
 	useEffect(() => {
 		if (user?.userId === undefined) {
 			dispatch({
-				type: UserActionType.FETCH_USER_DETAILS,
+				type: CustomerActionType.FETCH_CUSTOMER_DETAILS,
 				payload: {
 					successCB: userRes => {
 						setUser(userRes);
@@ -43,163 +37,86 @@ export const RootLayout: React.FunctionComponent<any> = ({ children }) => {
 
 	const MENU_ITEMS = [
 		{
-			key: 'leads',
-			label: 'Leads',
-			route: AppRoutes.LEADS,
-			icon: <IoPeopleOutline />,
+			key: 'new-project',
+			label: 'New Project',
+			route: AppRoutes.NEW_PROJECT,
+			icon: <FaWandMagicSparkles />,
 			template: menuItemRenderer,
 			activeKeys: matchedRoutes,
 			command: () => {
-				navigate(AppRoutes.LEADS);
+				navigate(AppRoutes.NEW_PROJECT);
 			}
 		},
 		{
-			key: 'products',
-			label: 'Products',
+			key: 'myOrders',
+			label: 'My Orders',
 			icon: <TbSitemap />,
-			route: AppRoutes.PRODUCTS,
+			route: AppRoutes.MY_ORDERS,
 			template: menuItemRenderer,
 			activeKeys: matchedRoutes,
-			items: [
-				{
-					key: 'all-categories',
-					label: 'All Categories',
-					route: AppRoutes.ALL_CATEGORIES,
-					icon: <BiCategory />,
-					template: menuItemRenderer,
-					activeKeys: matchedRoutes,
-					command: () => {
-						navigate(AppRoutes.ALL_CATEGORIES);
-					}
-				},
-				{
-					key: 'all-products',
-					label: 'All Products',
-					route: AppRoutes.ALL_PRODUCTS,
-					icon: <LiaElementor />,
-					template: menuItemRenderer,
-					activeKeys: matchedRoutes,
-					command: () => {
-						navigate(AppRoutes.ALL_PRODUCTS);
-					}
-				},
-				{
-					key: 'all-warranty',
-					label: 'All Warranty',
-					route: AppRoutes.ALL_WARRANTY,
-					icon: <VscWorkspaceTrusted />,
-					template: menuItemRenderer,
-					activeKeys: matchedRoutes,
-					command: () => {
-						navigate(AppRoutes.ALL_WARRANTY);
-					}
-				}
-			]
+			command: () => {
+				navigate(AppRoutes.MY_ORDERS);
+			}
 		},
 		{
-			key: 'inspirations',
-			label: 'Inspirations',
+			key: 'savedProjects',
+			label: 'Saved Projects',
 			icon: <MdOutlineAddHomeWork />,
-			route: AppRoutes.INSPIRATIONS,
+			route: AppRoutes.SAVED_PROJECTS,
 			template: menuItemRenderer,
 			activeKeys: matchedRoutes,
-			items: [
-				{
-					key: 'all-inspirations',
-					label: 'All Inspirations',
-					route: AppRoutes.ALL_INSPIRATIONS,
-					icon: <MdOutlineMapsHomeWork />,
-					template: menuItemRenderer,
-					activeKeys: matchedRoutes,
-					command: () => {
-						navigate(AppRoutes.ALL_INSPIRATIONS);
-					}
-				}
-			]
+			command: () => {
+				navigate(AppRoutes.SAVED_PROJECTS);
+			}
 		},
 		{
-			key: 'projects',
-			label: 'Projects',
-			route: AppRoutes.PROJECTS,
+			key: 'contactUs',
+			label: 'Contact Us',
+			route: AppRoutes.CONTACT_US,
 			template: menuItemRenderer,
 			icon: <FaRegBuilding />,
 			activeKeys: matchedRoutes,
 			command: () => {
-				navigate(AppRoutes.ALL_PROJECTS);
+				navigate(AppRoutes.CONTACT_US);
 			}
 		},
 		{
-			key: 'commercials',
-			label: 'Commercials',
+			key: 'chat',
+			label: 'Chat',
 			icon: <FaMoneyCheckDollar />,
-			route: AppRoutes.COMMERCIALS,
+			route: AppRoutes.CHAT,
 			template: menuItemRenderer,
-			activeKeys: matchedRoutes,
-			items: [
-				{
-					key: 'payments',
-					label: 'Payments',
-					route: AppRoutes.COMMERCIALS_PAYMENT,
-					icon: <RiMoneyDollarCircleLine />,
-					template: menuItemRenderer,
-					activeKeys: matchedRoutes,
-					command: () => {
-						navigate(AppRoutes.COMMERCIALS_PAYMENT);
-					}
-				}
-			]
-		},
-		{
-			key: 'holidays',
-			label: 'Holidays',
-			route: AppRoutes.HOLIDAYS,
-			template: menuItemRenderer,
-			icon: <BsCalendarDate />,
 			activeKeys: matchedRoutes,
 			command: () => {
-				navigate(AppRoutes.HOLIDAYS);
-			}
-		},
-		{
-			key: 'approvals',
-			label: 'Approvals',
-			route: AppRoutes.APPROVAL,
-			template: menuItemRenderer,
-			icon: <BsExclamationCircle />,
-			activeKeys: matchedRoutes,
-			command: () => {
-				navigate(AppRoutes.APPROVAL);
+				navigate(AppRoutes.CHAT);
 			}
 		}
 	];
 
 	return (
-		<div className="antialiased grow bg-gray-50 dark:bg-gray-900 flex">
-			{showSidebar && (
-				<NavSidebar
-					show={showSidebar}
-					menuList={MENU_ITEMS}
-					onClose={() => {
-						setShowSidebar(false);
-					}}
-				/>
-			)}
-			<div className="w-full" aria-expanded="true">
-				<GlobalNavbar
-					logout={logout}
-					isUserLoading={isUserLoading}
-					user={user || {}}
-					matchedRoutes={matchedRoutes}
-					handleMenuIconClick={() => setShowSidebar(prev => !prev)}
-				/>
-				<div
-					className="h-[95vh] p-8 overflow-scroll"
-					style={{ background: 'linear-gradient(to bottom, #082f49 30%, transparent 10%)' }}
-				>
-					{children}
+		<>
+			<div className="antialiased grow flex">
+				{showSidebar && (
+					<NavSidebar
+						show={showSidebar}
+						menuList={MENU_ITEMS}
+						onClose={() => {
+							setShowSidebar(false);
+						}}
+					/>
+				)}
+				<div className="w-full bg-gray-100 " aria-expanded="true">
+					<GlobalNavbar
+						logout={logout}
+						isUserLoading={isUserLoading}
+						user={user || {}}
+						matchedRoutes={matchedRoutes}
+						handleMenuIconClick={() => setShowSidebar(prev => !prev)}
+					/>
+					<div className="h-[95vh] my-36 p-8 overflow-scroll bg-white">{children}</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 

@@ -3,6 +3,7 @@ import AppRoutes from '@utilities/app-routes';
 import { Image } from 'primereact/image';
 import { Menu } from 'primereact/menu';
 import React, { useRef } from 'react';
+import Logo from '@assets/images/hk_logo.png';
 
 const UserDetails = ({ userName, userEmail, userPhoneNumber }: any) => (
 	<div className=" flex gap-3 flex-col">
@@ -39,13 +40,13 @@ const GlobalNavbar = ({ isUserLoading, user = {}, logout, handleMenuIconClick }:
 	];
 
 	return (
-		<div className="h-16 sticky z-50 shadow-sm shadow-gray-300 w-full bg-white">
-			<div className="flex py-2 h-full items-center bg-primary">
+		<div className="h-20 sticky top-0 z-50 shadow-sm shadow-gray-300 w-full bg-black">
+			<div className="flex py-2 h-full items-center ">
 				<div className="text-2xl pl-8 w-72 flex gap-4">
-					<span
+					{/* <span
 						className="pi pi-bars text-2xl text-white cursor-pointer"
 						onClick={handleMenuIconClick}
-					></span>
+					></span> */}
 				</div>
 				<div className="pr-8 flex grow items-center">
 					<div className="ml-auto">
