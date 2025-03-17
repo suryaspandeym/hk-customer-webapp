@@ -1,3 +1,9 @@
+@import 'form.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @layer tailwind-base, primereact, tailwind-utilities;
 
 @layer tailwind-base {
@@ -8,3 +14,21 @@
 	@tailwind components;
 	@tailwind utilities;
 }
+
+html {
+	font-size: 14px;
+}
+body {
+	overflow: hidden;
+	font-family: 'Poppins', serif;
+}
+
+.plus-jakarta-sans-font {
+	font-family: "Plus Jakarta Sans", BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+@media print {
+	.page-break {
+	  page-break-after: always;
+	}
+  }

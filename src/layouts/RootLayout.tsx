@@ -113,7 +113,7 @@ export const RootLayout: React.FunctionComponent<any> = ({ children }) => {
 						matchedRoutes={matchedRoutes}
 						handleMenuIconClick={() => setShowSidebar(prev => !prev)}
 					/>
-					<div className="h-[95vh] my-36 p-8 overflow-scroll bg-white">{children}</div>
+					<div className="h-[95vh] my-[50px] p-8 overflow-scroll bg-white rounded">{children}</div>
 				</div>
 			</div>
 		</>

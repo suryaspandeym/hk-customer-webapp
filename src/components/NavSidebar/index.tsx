@@ -26,7 +26,7 @@ const NavSidebar = ({ menuList, onClose }: any) => {
 				{/* <img className="w-[96px] h-[28px] ml-48 rounded-md p-6" src={Logo} alt="logo" /> */}
 				{/* <span className="pi pi-times text-2xl sm:!hidden cursor-pointer" onClick={onClose}></span> */}
 			</div>
-			<div className="h-full flex flex-col px-6 bg-gray-100 pt-36">
+			<div className="h-full flex flex-col px-6 bg-gray-100 pt-[50px]">
 				<div className="grow">
 					<PanelMenu
 						model={menuList}

@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { Routes } from '@utilities';
 import { AuthActionType } from '@store/enums';
-import { Wrapper, SignupForm } from '@components';
+import { SignupForm } from '@components';
 
 export const Signup: React.FunctionComponent = () => {
 	const { t } = useTranslation();
@@ -13,23 +13,21 @@ export const Signup: React.FunctionComponent = () => {
 	const navigate = useNavigate();
 
 	return (
-		<Wrapper className="o-wrapper--fancy">
-			<SignupForm
-				onSubmit={(payload: any): void => {
-					dispatch({
-						type: AuthActionType.SIGNUP_REQUEST,
-						payload: {
-							...payload,
-							redirect: (): void => navigate(Routes.LOGIN)
-						}
-					});
-				}}
-			>
-				<p className="c-form__hint">
-					{t('Already have an account?')} <Link to={Routes.LOGIN}>{t('Login')}</Link>
-				</p>
-			</SignupForm>
-		</Wrapper>
+		<SignupForm
+			onSubmit={(payload: any): void => {
+				dispatch({
+					type: AuthActionType.SIGNUP_REQUEST,
+					payload: {
+						...payload,
+						redirect: (): void => navigate(Routes.LOGIN)
+					}
+				});
+			}}
+		>
+			<p className="c-form__hint">
+				{t('Already have an account?')} <Link to={Routes.LOGIN}>{t('Login')}</Link>
+			</p>
+		</SignupForm>
 	);
 };
 

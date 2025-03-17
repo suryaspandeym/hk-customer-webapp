@@ -1,0 +1,81 @@
+@tailwind components;
+@layer components {
+	.form {
+		@apply bg-blue-700 hover:bg-blue-800;
+	}
+
+	.form-input {
+		@apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
+	}
+
+	.error-msg {
+		@apply text-red-700;
+	}
+
+	.form-checkbox:before {
+		@apply text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600;
+	}
+
+	.form-label {
+		@apply block text-sm font-medium text-gray-900 dark:text-white;
+	}
+
+	.form-submit {
+		@apply text-white form focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 text-center;
+	}
+
+	.form-submit:disabled {
+		@apply bg-gray-200;
+	}
+
+	.form-btn {
+		@apply py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700;
+	}
+
+	.label-as-btn {
+		@apply form-btn border-none;
+	}
+
+	.suffix-wrapper {
+		display: inline-flex;
+		position: relative;
+		justify-content: flex-end;
+		align-items: center;
+	}
+
+	.suffix-wrapper input {
+		@apply w-full;
+	}
+
+	/* position the unit to the right of the wrapper */
+	.suffix-wrapper::after {
+		content: " lakhs";
+		position: absolute;
+		right: 0.5em;
+		transition: all 0.05s ease-in-out;
+	}
+
+	.suffix-wrapper:hover::after,
+	.suffix-wrapper:focus-within::after {
+	}
+
+	/* handle Firefox (arrows always shown) */
+	@supports (-moz-appearance: none) {
+		.suffix-wrapper::after {
+			right: 1.5em;
+		}
+	}
+}
+
+@layer components {
+	.chat-bubble {
+		@apply !bg-blue-200 text-black;
+	}
+
+	.chat-bubble-self {
+		@apply !bg-green-200 text-black;
+	}
+	input:checked ~ span {
+		@apply text-white form border-none;
+	}
+}

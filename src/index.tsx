@@ -13,7 +13,7 @@ import { PrimeReactConfig } from './primereact-config';
 
 // 3rd Party Styling imports
 import 'primeicons/primeicons.css'; //icons
-// import '@assets/styles/eunomia.min.css';
+import '@assets/styles/eunomia.min.css';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 export const store = configureStore();

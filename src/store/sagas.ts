@@ -1,5 +1,12 @@
-
 import { localeSaga, resendOTPSaga, sendOTPSaga, verifyOTPSaga } from './branches/auth/sagas';
+import { addProjectDetailsSaga } from './branches/project/sagas';
 
-// export default [loginSaga, logoutSaga, localeSaga, passwordResetSaga];
-export default [localeSaga, sendOTPSaga, verifyOTPSaga, resendOTPSaga];
+export default [
+	localeSaga,
+	sendOTPSaga,
+	verifyOTPSaga,
+	resendOTPSaga,
+
+	//PROJECT
+	addProjectDetailsSaga
+];

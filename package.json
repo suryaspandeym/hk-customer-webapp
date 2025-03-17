@@ -72,6 +72,7 @@
 		"i18next": "23.7.7",
 		"i18next-browser-languagedetector": "7.2.0",
 		"normalize.css": "8.0.1",
+		"prime-react": "^1.0.0",
 		"primeicons": "7.0.0",
 		"primereact": "10.6.3",
 		"query-string": "9.0.0",

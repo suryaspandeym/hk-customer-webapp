@@ -13,10 +13,10 @@ export const menuItemRenderer = (item: any, options: any) => {
 			onClick={options.onClick}
 		>
 			<div className={`flex items-center ${isItemActive ? ' bg-[#232323] rounded-lg py-2 px-4' : 'bg-white'}`}>
-				<span className={`text-2xl ${isItemActive ? 'text-white font-semibold bg-black' : 'text-black'}`}>
+				<span className={`text-2xl ${isItemActive ? 'text-white font-semibold bg-[#232323]' : 'text-black'}`}>
 					{item.icon}
 				</span>
-				<span className={`mx-2 text-md ${isItemActive ? 'text-white font-semibold bg-black' : 'text-black'}`}>
+				<span className={`mx-2 text-md ${isItemActive ? 'text-white font-semibold bg-[#232323]' : 'text-black'}`}>
 					{item.label}
 				</span>
 			</div>
