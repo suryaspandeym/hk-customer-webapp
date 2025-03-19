@@ -26,7 +26,6 @@ export default (state = initialState, { type, payload }: ProjectAction): Project
 			};
 
 		case ProjectActionType.STORE_DEFAULT_QUOTATION:
-			debugger;
 			return {
 				...state,
 				defaultQuotations: payload

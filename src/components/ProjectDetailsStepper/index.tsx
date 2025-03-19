@@ -20,7 +20,6 @@ export const ProjectDetailsStepper = ({ onNext }: any) => {
 		initialValues,
 		// validationSchema:addProjectDetailsSchema,
 		onSubmit: values => {
-			// debugger;
 			dispatch({
 				type: ProjectActionType.ADD_PROJECT_DETAILS,
 				payload: {

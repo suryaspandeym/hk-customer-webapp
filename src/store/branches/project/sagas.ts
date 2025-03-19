@@ -11,7 +11,6 @@ type ProjectSagaFormEffect = Generator<ForkEffect<void>>;
 
 export function* addProjectDetailsEffect(action: AnyAction): ProjectSagaEffect {
 	const { formData, successCB, errorCB } = action.payload;
-	// debugger;
 
 	try {
 		// const { data } = yield call(addProjectDetails, formData);
@@ -638,7 +637,6 @@ export function* getPreDesignQuotationEffect(action: AnyAction): any {
 
 export function* getDefaultQuotationsEffect(action: AnyAction): any {
 	const { selectedAreas, budget, errorCB } = action.payload;
-	debugger;
 
 	try {
 		// const { data }: any = yield call(getDefaultQuotations, { areas: selectedAreas, budget: budget });

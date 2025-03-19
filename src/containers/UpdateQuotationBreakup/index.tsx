@@ -17,7 +17,6 @@ export const QuotationBreakupStepper = ({ onNext }: any) => {
 	const [quotationBreakupModal, setQuotationBreakupModal] = useState(false);
 
 	const { quotationData, preDesignQuotation, defaultQuotations } = useAppSelector(state => state.project);
-	debugger;
 	const fetchQuotationDetails = () => {
 		/// same as getPredesignQuotatopn // custom
 		dispatch({
@@ -156,7 +155,6 @@ export const QuotationBreakupStepper = ({ onNext }: any) => {
 			<ScrollPanel style={{ width: '100%', height: 'calc(100vh - 180px)' }}>
 				<div className="container mx-auto px-6 py-8 space-y-12">
 					{quotationData?.quotations?.map(area => {
-						debugger;
 						const typesInThisArea = getTypesInArea(area);
 
 						return (
