@@ -29,7 +29,12 @@ export const NewProject = () => {
 	return (
 		<div className="p-6 h-full">
 			<div className="flex items-center space-x-2 text-2xl font-bold mb-6">
-				<i className="pi pi-arrow-left text-xl" />
+				<i
+					className="pi pi-arrow-left text-xl"
+					onClick={() => {
+						activeStep !== 0 && setActiveStep(activeStep - 1);
+					}}
+				/>
 				<span>New Project</span>
 			</div>
 
@@ -38,7 +43,7 @@ export const NewProject = () => {
 					<div key={index} className="w-1/4 text-center">
 						<span
 							className={`block text-sm uppercase ${
-								index === activeStep ? 'text-black font-bold' : 'text-gray-400'
+								index <= activeStep ? 'text-black font-bold' : 'text-gray-400'
 							}`}
 						>
 							{step.label}
@@ -61,7 +66,7 @@ export const NewProject = () => {
 				{activeStep === 3 && <div>Checkout Content</div>}
 			</div>
 
-			<div className="flex justify-between mt-6">
+			{/* <div className="flex justify-between mt-6">
 				{activeStep !== 0 && (
 					<Button
 						label="Back"
@@ -70,7 +75,7 @@ export const NewProject = () => {
 						onClick={() => setActiveStep(activeStep - 1)}
 					/>
 				)}
-			</div>
+			</div> */}
 		</div>
 	);
 };

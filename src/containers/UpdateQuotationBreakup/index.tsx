@@ -245,7 +245,17 @@ export const QuotationBreakupStepper = ({ onNext }: any) => {
 				<Dialog
 					visible={quotationBreakupModal}
 					onHide={() => setQuotationBreakupModal(false)}
-					header="Quotation Breakup"
+					header={
+						<div className="flex justify-between items-center w-full">
+							<h2 className="text-3xl text-black font-bold">Quotation Breakup</h2>
+							<Button
+								label="Download Quotation"
+								icon="pi pi-download"
+								className="text-lg text-black bg-transparent border-none"
+								iconPos="left"
+							/>
+						</div>
+					}
 					style={{ width: '130vw', maxWidth: '1000px' }}
 				>
 					<UpdateQuotationBreakupSelection

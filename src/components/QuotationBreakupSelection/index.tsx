@@ -156,27 +156,9 @@ export const UpdateQuotationBreakupSelection = ({ preDesignQuotationData, defaul
 
 	return (
 		<>
-			<div className="flex justify-between items-center p-4 border-gray-200">
-				<h1 className="text-xl font-semibold text-gray-900">Quotation Breakup</h1>
-				<div className="flex gap-3">
-					<Button
-						label="Download Quotation"
-						icon="pi pi-download"
-						className="p-button-text p-button-secondary"
-						iconPos="left"
-					/>
-					<Button
-						icon="pi pi-times"
-						className="p-button-rounded p-button-text"
-						onClick={onClose}
-						aria-label="Close"
-					/>
-				</div>
-			</div>
-
 			<div className="flex">
 				<div className="w-[178px] bg-white border-gray-200">
-					<ScrollPanel style={{ height: 'calc(100vh - 178px)' }} className="border-none">
+					<ScrollPanel style={{ height: 'calc(100vh - 200px)' }} className="border-none">
 						{quotationData?.quotations?.map((area, index) => (
 							<Button
 								key={area.areaEnum}
@@ -196,16 +178,22 @@ export const UpdateQuotationBreakupSelection = ({ preDesignQuotationData, defaul
 								</div>
 							</Button>
 						))}
+						{/* <div className=" p-4 mb-4 w-4/5 border border-[#F2F4FA] rounded-2xl m-2">
+							<div className="">Grand Total</div>
+							<div className="text-xl font-bold text-gray-900 mt-1">
+								{formatCurrencyINR(getTotalQuotationPrice())}
+							</div>
+						</div> */}
 					</ScrollPanel>
-					<div className="p-4 bg-gray-50 border-t border-gray-300">
-						<div className="font-semibold text-gray-700">Grand Total</div>
+					<div className=" p-4 mb-4 w-4/5 border border-[#F2F4FA] rounded-2xl m-2">
+						<div className="">Grand Total</div>
 						<div className="text-xl font-bold text-gray-900 mt-1">
 							{formatCurrencyINR(getTotalQuotationPrice())}
 						</div>
 					</div>
 				</div>
 
-				<div className="flex-1 p-6">
+				<div className="flex-1 p-6 mb-4 border border-[#F2F4FA] rounded-2xl m-2">
 					<div className="mb-6">
 						<TabView
 							activeIndex={activeTabIndex}
@@ -349,16 +337,15 @@ export const UpdateQuotationBreakupSelection = ({ preDesignQuotationData, defaul
 							</DataTable>
 						</div>
 					)}
-
-					<div className="mt-8 flex justify-end">
-						<Button
-							label="Save and Continue"
-							icon="pi pi-arrow-right"
-							iconPos="right"
-							className="px-4 py-2 bg-transparent text-black rounded-full"
-						/>
-					</div>
 				</div>
+			</div>
+			<div className="mt-8 flex justify-end">
+				<Button
+					label="Save and Continue"
+					icon="pi pi-arrow-right"
+					iconPos="right"
+					className="px-4 py-2 bg-transparent text-black rounded-full"
+				/>
 			</div>
 
 			<Dialog

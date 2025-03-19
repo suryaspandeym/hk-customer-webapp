@@ -51,12 +51,12 @@ export const FloorPlanStepper = ({ onNext }: any) => {
 						</div>
 						<div className="absolute bottom-2.5 ">
 							<Button
-								type="submit"
 								label="Save and Continue"
 								icon="pi pi-arrow-right"
 								iconPos="right"
 								onClick={onNext}
-								className="bg-transparent text-black border rounded-xl w-full"
+								className="p-button-outlined border-black text-black hover:bg-gray-100 h-[48px] mt-28 md:w-60"
+								style={{ borderRadius: '12px' }}
 							/>
 						</div>
 					</>
