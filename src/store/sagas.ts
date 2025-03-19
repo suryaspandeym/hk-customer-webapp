@@ -1,5 +1,10 @@
 import { localeSaga, resendOTPSaga, sendOTPSaga, verifyOTPSaga } from './branches/auth/sagas';
-import { addProjectDetailsSaga } from './branches/project/sagas';
+import {
+	addProjectDetailsSaga,
+	fetchQuotationDataSaga,
+	getDefaultQuotationsSaga,
+	getPreDesignQuotationSaga
+} from './branches/project/sagas';
 
 export default [
 	localeSaga,
@@ -8,5 +13,8 @@ export default [
 	resendOTPSaga,
 
 	//PROJECT
-	addProjectDetailsSaga
+	addProjectDetailsSaga,
+	fetchQuotationDataSaga,
+	getPreDesignQuotationSaga,
+	getDefaultQuotationsSaga
 ];

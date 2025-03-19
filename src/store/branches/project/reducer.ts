@@ -2,26 +2,9 @@ import { ProjectActionType } from './enums';
 import { ProjectState, ProjectAction } from './interfaces';
 
 export const initialState: ProjectState = {
-	loading: false,
-	error: false,
-	leadId: '',
-	projectId: '',
-	projectName: '',
-	leadName: '',
-	sessionID: '',
-	userDetails: {},
-	quotations: [],
-	floorPlanDocURL: '',
-	predictionId: '',
-	predictionStatus: null,
-	isPolling: false,
-	predictionData: [],
-	preDesignQuotation: [],
-	budget: '',
-	defaultQuotations: {},
-	floorPlanImages: [],
-	selectedQuotation: {},
-	quotationsLoading: false
+	quotationData: {},
+	preDesignQuotation: {},
+	defaultQuotations: {}
 };
 
 export default (state = initialState, { type, payload }: ProjectAction): ProjectState => {
@@ -29,6 +12,24 @@ export default (state = initialState, { type, payload }: ProjectAction): Project
 		case ProjectActionType.ADD_PROJECT_DETAILS:
 			return {
 				...state
+			};
+		case ProjectActionType.STORE_QUOTATION_DETAILS:
+			return {
+				...state,
+				quotationData: payload
+			};
+
+		case ProjectActionType.STORE_PRE_DESIGN_QUOTATION:
+			return {
+				...state,
+				preDesignQuotation: payload
+			};
+
+		case ProjectActionType.STORE_DEFAULT_QUOTATION:
+			debugger;
+			return {
+				...state,
+				defaultQuotations: payload
 			};
 
 		default:

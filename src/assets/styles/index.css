@@ -20,12 +20,16 @@ html {
 }
 body {
 	overflow: hidden;
-	font-family: 'Poppins', serif;
+	font-family: 'Raleway', serif;
 }
 
 .plus-jakarta-sans-font {
 	font-family: "Plus Jakarta Sans", BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
+
+.raleway-font {
+	font-family: 'Raleway', sans-serif;
+  }
 
 @media print {
 	.page-break {

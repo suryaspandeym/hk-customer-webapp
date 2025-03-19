@@ -49,6 +49,16 @@ export const FloorPlanStepper = ({ onNext }: any) => {
 								Image should be in png, jpg, jpeg or pdf format and should not exceed more than 50 mb.
 							</div>
 						</div>
+						<div className="absolute bottom-2.5 ">
+							<Button
+								type="submit"
+								label="Save and Continue"
+								icon="pi pi-arrow-right"
+								iconPos="right"
+								onClick={onNext}
+								className="bg-transparent text-black border rounded-xl w-full"
+							/>
+						</div>
 					</>
 				) : (
 					<FormikProvider value={uploadFloorPlanForm}>

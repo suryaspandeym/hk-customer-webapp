@@ -6,10 +6,12 @@ import sagas from './sagas';
 import rootReducer from './root-reducer';
 import { initialState as auth } from '@store/branches/auth/reducer';
 import { initialState as customer } from '@store/branches/customer/reducer';
+import { initialState as project } from '@store/branches/project/reducer';
 
 const initialState = {
 	auth,
-	customer
+	customer,
+	project
 };
 
 export const sagaMiddleware: SagaMiddleware = createSagaMiddleware();
